@@ -1,0 +1,34 @@
+{
+  "name": "vue-webpack-gettext",
+  "version": "0.1.0",
+  "description": "Extract and compile translations with vue-gettext and vue-loader, i.e. for .vue files with <template lang='pug'></template>",
+  "main": "extract.js",
+  "dependencies": {
+    "easygettext": "^1.2.2",
+    "glob": "^7.1.1",
+    "pug": "^2.0.0-beta6",
+    "shelljs": "^0.7.4",
+    "vue-loader": "^9.9.5",
+    "yargs": "^6.5.0"
+  },
+  "peerDependencies": {
+    "vue-gettext": "^2.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "vue-gettext-extract": "./extract.js",
+    "vue-gettext-compile": "./compile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennyki/vue-webpack-gettext.git"
+  },
+  "author": "kenny ki <knyki.12@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kennyki/vue-webpack-gettext/issues"
+  },
+  "homepage": "https://github.com/kennyki/vue-webpack-gettext#readme"
+}
