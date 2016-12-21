@@ -1,6 +1,6 @@
 {
   "name": "vue-webpack-gettext",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Extract and compile translations with vue-gettext and vue-loader, i.e. for .vue files with <template lang='pug'></template>",
   "main": "extract.js",
   "dependencies": {
@@ -18,8 +18,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "vue-gettext-extract": "./extract.js",
-    "vue-gettext-compile": "./compile.js"
+    "vue-gettext-extract": "node ./extract.js",
+    "vue-gettext-compile": "node ./compile.js"
   },
   "repository": {
     "type": "git",
