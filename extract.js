@@ -72,6 +72,6 @@ Promise.all(renderPromises).then((results) => {
 
   // extract from js
   shell.exec(`xgettext --language=JavaScript --keyword=npgettext:1c,2,3 \
-    --from-code=utf-8 --join-existing --no-wrap \
+    --from-code=utf-8 --join-existing --add-comments --no-wrap \
     --output ${outputFile} ${jsFiles.join(' ')}`)
 })
