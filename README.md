@@ -1,6 +1,6 @@
 # vue-webpack-gettext
 
-> Extract and compile translations with vue-gettext and vue-loader, i.e. for .vue files with <template lang='pug'></template>
+> Extract and compile translations with vue-gettext and vue-loader, i.e. for .vue files with \<template lang='pug'\>\<\/template\>
 
 ## Introduction
 
@@ -34,11 +34,11 @@ So this helper will give you an option to split them into a JSON file per langua
 ## Usage
 
 1. Install GNU gettext tools:
-  - MacOS: `brew install gettext && brew link --force gettext`
-  - Windows: _need help_
+    - MacOS: `brew install gettext && brew link --force gettext`
+    - Windows: _need help_
 1. `npm install --save-dev vue-webpack-gettext`
 1. Ensure that template language engines (that you're using) are installed, i.e. `npm install --save-dev pug`
-  - Check [consolidate.js](https://github.com/tj/consolidate.js/) for supported engines
+    - Check [consolidate.js](https://github.com/tj/consolidate.js/) for supported engines
 1. To extract: `node node_modules/vue-webpack-gettext/extract --output static/template.pot --src src`
 1. To compile: `node node_modules/vue-webpack-gettext/compile --output static/locale --src static/translated --multiple`
 1. You can add [npm scripts](https://docs.npmjs.com/misc/scripts) to your project's package.json to ease the tasks execution
