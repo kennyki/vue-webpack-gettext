@@ -24,6 +24,11 @@ const extractAttrs = argv.attrs
 // clean up
 shell.rm('-f', outputFile)
 
+// support v-translate directive
+if (ExtractorDefaultAttrs.indexOf('v-translate') === -1) {
+  ExtractorDefaultAttrs.push('v-translate')
+}
+
 const extractor = new Extractor({
   lineNumbers: true,
   attributes: extractAttrs
