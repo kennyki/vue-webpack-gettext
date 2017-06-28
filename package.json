@@ -1,6 +1,6 @@
 {
   "name": "vue-webpack-gettext",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Extract and compile translations with vue-gettext and vue-loader, i.e. for .vue files with <template lang='pug'></template>",
   "main": "extract.js",
   "dependencies": {
