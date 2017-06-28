@@ -24,11 +24,18 @@ const extractAttrs = argv.attrs
 // clean up
 shell.rm('-f', outputFile)
 
+let finalAttrs = extractAttrs
+                ? extractAttrs.concat(ExtractorDefaultAttrs)
+                : ExtractorDefaultAttrs
+
+// support v-translate directive
+if (finalAttrs.indexOf('v-translate') === -1) {
+  finalAttrs.push('v-translate')
+}
+
 const extractor = new Extractor({
   lineNumbers: true,
-  attributes: extractAttrs
-              ? extractAttrs.concat(ExtractorDefaultAttrs)
-              : ExtractorDefaultAttrs
+  attributes: finalAttrs
 })
 
 const vueFiles = glob.sync(`${srcFolder}/**/*.vue`)
