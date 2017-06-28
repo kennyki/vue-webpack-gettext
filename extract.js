@@ -45,14 +45,14 @@ let renderPromises = vueFiles.map((file) => {
   let content = fs.readFileSync(file, 'utf8')
   let filename = path.basename(file)
   let output = parseVue(content, filename, false)
-  let templateLang = output.template.lang
+  let templateLang = output.template ? output.template.lang : null
   let renderFn = templateLang && consolidate[templateLang] && consolidate[templateLang].render
   let renderOpts = templateLang && require(`./extract-opts/${templateLang}`)
 
   // must be in html so that they can match when the app runs
   let renderPromise = renderFn
                       ? renderFn.call(consolidate, output.template.content, renderOpts)
-                      : Promise.resolve(output.template.content)
+                      : Promise.resolve(output.template ? output.template.content : '')
 
   return renderPromise.then((html) => {
     return {file, html}
@@ -79,6 +79,6 @@ Promise.all(renderPromises).then((results) => {
 
   // extract from js
   shell.exec(`xgettext --language=JavaScript --keyword=npgettext:1c,2,3 \
-    --from-code=utf-8 --join-existing --no-wrap \
+    --from-code=utf-8 --join-existing --add-comments --no-wrap \
     --output ${outputFile} ${jsFiles.join(' ')}`)
 })
