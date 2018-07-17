@@ -38,7 +38,10 @@ const extractor = new Extractor({
   attributes: finalAttrs
 })
 
-const vueFiles = glob.sync(`${srcFolder}/**/*.vue`)
+const getFileArrays = (fileExtension = 'vue') => srcFolder.map(src => glob.sync(`${src}/**/*.${fileExtension}`))
+const flattenFiles = (fileExtension = 'vue') => [].concat.apply([], getFileArrays())
+
+const vueFiles = flattenFiles()
 
 // extract from templates
 let renderPromises = vueFiles.map((file) => {
@@ -75,7 +78,7 @@ Promise.all(renderPromises).then((results) => {
   fs.writeFileSync(outputFile, extractor.toString())
 
   // note: vue files contain js code too
-  const jsFiles = glob.sync(`${srcFolder}/**/*.js`).concat(vueFiles)
+  const jsFiles = flattenFiles('js').concat(vueFiles)
 
   // extract from js
   shell.exec(`xgettext --language=JavaScript --keyword=npgettext:1c,2,3 \
