@@ -10,16 +10,20 @@ const ExtractorDefaultAttrs = require('easygettext/dist/constants').DEFAULT_ATTR
 
 const argv = require('yargs')
   .alias('output', 'o')
-  .describe('output', 'The output file. It should be your template.pot')
+  .describe('output', 'The output file. It should be your template.pot.')
   .alias('src', 's')
-  .describe('src', 'The source folder for vue/html/js files')
+  .describe('src', 'The source folder for vue/html/js files.')
   .array('attrs')
+  .describe('attrs', 'The attributes passed to easygettext extractor.')
+  .array('xgettext')
+  .describe('xgettext-args', 'The arguments to pass to xgettext command.')
   .demand(['src', 'output'])
   .argv
 
 const outputFile = argv.output
 const srcFolder = argv.src
 const extractAttrs = argv.attrs
+const xgettextArgs = argv.xgettextArgs
 
 // clean up
 shell.rm('-f', outputFile)
@@ -80,5 +84,7 @@ Promise.all(renderPromises).then((results) => {
   // extract from js
   shell.exec(`xgettext --language=JavaScript --keyword=npgettext:1c,2,3 \
     --from-code=utf-8 --join-existing --add-comments --no-wrap \
-    --output ${outputFile} ${jsFiles.join(' ')}`)
+    ${xgettextArgs} \
+    --output ${outputFile} ${jsFiles.join(' ')}`
+  )
 })
