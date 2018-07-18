@@ -38,10 +38,11 @@ const extractor = new Extractor({
   attributes: finalAttrs
 })
 
-const getFileArrays = (fileExtension = 'vue') => srcFolder.map(src => glob.sync(`${src}/**/*.${fileExtension}`))
-const flattenFiles = (fileExtension = 'vue') => [].concat.apply([], getFileArrays())
+const syncFiles = (src, fileExtension = 'vue') => glob.sync(`${src}/**/*.${fileExtension}`)
 
-const vueFiles = flattenFiles()
+const getFiles = (fileExtension = 'vue') => srcFolder.reduce((files, src) => [...files, ...syncFiles(src, fileExtension)], [])
+
+const vueFiles = Array.isArray(srcFolder) ? getFiles() : glob.sync(srcFolder)
 
 // extract from templates
 let renderPromises = vueFiles.map((file) => {
@@ -78,10 +79,11 @@ Promise.all(renderPromises).then((results) => {
   fs.writeFileSync(outputFile, extractor.toString())
 
   // note: vue files contain js code too
-  const jsFiles = flattenFiles('js').concat(vueFiles)
+  const jsFiles = Array.isArray(srcFolder) ? getFiles('js') : syncFiles(srcFolder, 'js')
+  const files = [...jsFiles, ...vueFiles]
 
   // extract from js
   shell.exec(`xgettext --language=JavaScript --keyword=npgettext:1c,2,3 \
     --from-code=utf-8 --join-existing --add-comments --no-wrap \
-    --output ${outputFile} ${jsFiles.join(' ')}`)
+    --output ${outputFile} ${files.join(' ')}`)
 })
