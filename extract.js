@@ -42,7 +42,7 @@ const syncFiles = (src, fileExtension = 'vue') => glob.sync(`${src}/**/*.${fileE
 
 const getFiles = (fileExtension = 'vue') => srcFolder.reduce((files, src) => [...files, ...syncFiles(src, fileExtension)], [])
 
-const vueFiles = Array.isArray(srcFolder) ? getFiles() : glob.sync(srcFolder)
+const vueFiles = Array.isArray(srcFolder) ? getFiles() : syncFiles(srcFolder)
 
 // extract from templates
 let renderPromises = vueFiles.map((file) => {
