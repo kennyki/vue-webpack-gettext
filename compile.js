@@ -2,7 +2,7 @@ const shell = require('shelljs')
 const path = require('path')
 const fs = require('fs')
 const glob = require('glob')
-const po2json = require('easygettext/dist/compile').po2json
+const po2json = require('easygettext/src/compile').po2json
 
 const argv = require('yargs')
   .alias('output', 'o')
