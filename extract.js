@@ -5,8 +5,8 @@ const glob = require('glob')
 const consolidate = require('consolidate')
 const Promise = require('promise')
 const parseVue = require('vue-loader/lib/parser')
-const Extractor = require('easygettext/dist/extract').Extractor
-const ExtractorDefaultAttrs = require('easygettext/dist/constants').DEFAULT_ATTRIBUTES
+const Extractor = require('easygettext/src/extract').Extractor
+const ExtractorDefaultAttrs = require('easygettext/src/constants').DEFAULT_ATTRIBUTES
 
 const argv = require('yargs')
   .alias('output', 'o')
