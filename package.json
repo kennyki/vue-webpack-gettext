@@ -8,7 +8,7 @@
     "easygettext": "^2.7.0",
     "glob": "^7.1.1",
     "promise": "^7.1.1",
-    "shelljs": "^0.7.4",
+    "shelljs": "^0.8.5",
     "vue-loader": "^9.9.5",
     "yargs": "^6.5.0"
   },
